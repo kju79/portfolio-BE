@@ -1,4 +1,6 @@
-// require("dotenv").config();
+require("dotenv").config();
+
+porto = process.env.PORT || 5000;
 
 var createError = require("http-errors");
 var express = require("express");
@@ -29,8 +31,6 @@ app.use(function (req, res, next) {
   next(createError(404));
 });
 
-app.listen(process.env.PORT, () =>
-  console.log(`Backend of PORTFOLIO is running`)
-);
+app.listen(porto, () => console.log(`Backend of PORTFOLIO is running`));
 
 module.exports = app;
