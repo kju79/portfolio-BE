@@ -2,12 +2,10 @@ var express = require("express");
 var router = express.Router();
 const nodemailer = require("nodemailer");
 
-console.log("Hello from /sendmail");
+// console.log("Hello from /sendmail");
 
 router.post("/", function (req, res, next) {
-  res.render("index", { title: "sendmail" });
-
-  console.log(req.body);
+  // console.log(req.body);
   const { name, email, message } = req.body;
   const transporter = nodemailer.createTransport({
     service: process.env.SERVICE,
