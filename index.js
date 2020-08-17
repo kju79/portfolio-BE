@@ -1,4 +1,7 @@
-require("dotenv").config();
+const dotenv = require("dotenv");
+dotenv.config();
+
+const cors = require("cors");
 
 porto = process.env.PORT || 5000;
 
@@ -12,16 +15,13 @@ var indexRouter = require("./routes/index");
 var sendmailRouter = require("./routes/sendmail");
 
 var app = express();
+app.use(cors());
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "jade");
 
-app.use(logger("dev"));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
 app.use("/sendmail", sendmailRouter);
@@ -31,6 +31,8 @@ app.use(function (req, res, next) {
   next(createError(404));
 });
 
-app.listen(porto, () => console.log(`Backend of PORTFOLIO is running`));
+app.listen(porto, () =>
+  console.log(`Backend of PORTFOLIO is running on ${porto}`)
+);
 
 module.exports = app;
