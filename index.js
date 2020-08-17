@@ -1,25 +1,18 @@
+const express = require("express");
+const app = express();
 const dotenv = require("dotenv");
-dotenv.config();
-
 const cors = require("cors");
+
+dotenv.config();
 
 porto = process.env.PORT || 5000;
 
 var createError = require("http-errors");
-var express = require("express");
-var path = require("path");
-var cookieParser = require("cookie-parser");
-var logger = require("morgan");
 
 var indexRouter = require("./routes/index");
 var sendmailRouter = require("./routes/sendmail");
 
-var app = express();
 app.use(cors());
-
-// view engine setup
-app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "jade");
 
 app.use(express.json());
 
