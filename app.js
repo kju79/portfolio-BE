@@ -1,4 +1,6 @@
-require("dotenv").config();
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
 
 var createError = require("http-errors");
 var express = require("express");
@@ -11,7 +13,7 @@ var sendmailRouter = require("./routes/sendmail");
 
 var app = express();
 
-let port = 5000;
+const PORT = process.env.PORT || 5000;
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -31,8 +33,8 @@ app.use(function (req, res, next) {
   next(createError(404));
 });
 
-app.listen(process.env.PORT || 5000, () =>
-  console.log(`Backend of PORTFOLIO is running`)
+app.listen(PORT, () =>
+  console.log(`Backend of PORTFOLIO is running on: ${PORT}`)
 );
 
 module.exports = app;
