@@ -11,8 +11,6 @@ var sendmailRouter = require("./routes/sendmail");
 
 var app = express();
 
-const PORT = process.env.PORT || 5000;
-
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "jade");
@@ -31,8 +29,8 @@ app.use(function (req, res, next) {
   next(createError(404));
 });
 
-app.listen(PORT, () =>
-  console.log(`Backend of PORTFOLIO is running on: ${PORT}`)
+app.listen(process.env.PORT, () =>
+  console.log(`Backend of PORTFOLIO is running`)
 );
 
 module.exports = app;
